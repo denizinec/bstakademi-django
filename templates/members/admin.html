@@ -1,0 +1,1228 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block content %}
+<div style="height: auto;" class="wrapper-project">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Admin Kontrol Paneli</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
+            <li class="breadcrumb-item active">Admin Kontrol Paneli</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Projeler</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Haberler</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Bloglar</a>
+    </li>
+  </ul>
+  <div style="height: 60em;" class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"> 
+        <ul class="nav nav-pills mb-3 mt-3 ml-2" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-fikir-tab" data-toggle="pill" href="#pills-fikir" role="tab" aria-controls="pills-fikir" aria-selected="true">Proje Fikirleri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-hafta1-tab" data-toggle="pill" href="#pills-hafta1" role="tab" aria-controls="pills-hafta1" aria-selected="false">1. Hafta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-hafta2-tab" data-toggle="pill" href="#pills-hafta2" role="tab" aria-controls="pills-hafta2" aria-selected="false">2. Hafta</a>
+            </li>
+            <li class="nav-item">
+             <a class="nav-link" id="pills-hafta3-tab" data-toggle="pill" href="#pills-hafta3" role="tab" aria-controls="pills-hafta3" aria-selected="false">3. Hafta</a>
+              </li>
+              <li class="nav-item">
+             <a class="nav-link" id="pills-hafta4-tab" data-toggle="pill" href="#pills-hafta4" role="tab" aria-controls="pills-hafta4" aria-selected="false">4. Hafta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-hafta5-tab" data-toggle="pill" href="#pills-hafta5" role="tab" aria-controls="pills-hafta5" aria-selected="false">5. Hafta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-hafta6-tab" data-toggle="pill" href="#pills-hafta6" role="tab" aria-controls="pills-hafta6" aria-selected="false">6. Hafta</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-hafta7-tab" data-toggle="pill" href="#pills-hafta7" role="tab" aria-controls="pills-hafta7" aria-selected="false">7. Hafta</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-hafta8-tab" data-toggle="pill" href="#pills-hafta8" role="tab" aria-controls="pills-hafta8" aria-selected="false">8. Hafta</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-fikir" role="tabpanel" aria-labelledby="pills-fikir-tab">
+                
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">Proje Fikirleri</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          
+                          <tbody>
+                                                              
+                              {% if projefikir %}
+                                  {% for projectIdeaPost in projefikir %}  
+                                              
+                                      <tr>
+                                          <td>
+                                              #
+                                          </td>
+                                          <td>
+                                              <a>
+                                                  {{ projectIdeaPost.projectName }} {{ projectIdeaPost.projectSurname }}
+                                              </a>
+                                              <br/>
+                                              <small>
+                                                  {{ projectIdeaPost.created_date }}
+                                              </small>
+                                          </td>
+                                          <td>
+                                              <ul class="list-inline">
+                                                  <p>{{ projectIdeaPost.projectPName }}</p>
+                                              </ul>
+                                          </td>
+                                          <td class="project_progress">
+                                              <div class="progress progress-sm">
+                                                  <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                  </div>
+                                              </div>
+                                              <small>
+                                                  0% Tamamlandı
+                                              </small>
+                                          </td>
+                                          <td class="project-state">
+                                              {% if projectIdeaPost.projectIsApproved == False and projectIdeaPost.projectIsDenied == False %} <span class="badge badge-warning">Onay Bekliyor</span>{% endif %} 
+              
+                                              {% if projectIdeaPost.projectIsApproved == True %} <span class="badge badge-success">Onaylandı</span>{% endif %} 
+                                          
+                                              {% if projectIdeaPost.projectIsDenied == True %} <span class="badge badge-danger">Reddedildi</span> {% endif %}
+                                              
+                                          </td>
+                                          <td class="project-actions text-right">
+                                              <a class="btn btn-outline-primary btn-sm" href="{% url 'pollsDetail0' projectIdeaPost.pk %}">
+                                                  <i class="fas fa-folder">
+                                                  </i>
+                                                  Görüntüle
+                                              </a>
+                                              <a  href="{% url 'pollsDelete0' projectIdeaPost.pk %}">
+                                                <button class="btn btn-outline-danger btn-sm">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Sil
+                                                </button>
+                                            </a>
+                                          </td>
+                                      </tr>
+              
+                                  {% endfor %}
+                              {% endif %}
+              
+                          </tbody>
+              
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+            </div>
+            <div class="tab-pane fade" id="pills-hafta1" role="tabpanel" aria-labelledby="pills-hafta1-tab">
+                
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">1.Haftadaki Projeler</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                                                            
+                                            
+                            {% if hafta1 %}
+            
+                            {% for week1Post in hafta1 %}  
+            
+                        <tr>
+                            <td>
+                                #
+                            </td>
+                            <td>
+                                <a>
+                                    {{ week1Post.projectName1 }} {{ week1Post.projectSurname1 }}
+                                </a>
+                                <br/>
+                                <small>
+                                    {{ week1Post.created_date }}
+                                </small>
+                            </td>
+                            <td>
+                                <ul class="list-inline">
+                                    <p>{{ week1Post.projectPName1 }}</p>
+                                </ul>
+                            </td>
+                            <td class="project_progress">
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 12.5%">
+                                    </div>
+                                </div>
+                                <small>
+                                    12.5% Tamamlandı
+                                </small>
+                            </td>
+                            <td class="project-state">
+                                {% if week1Post.projectIsApproved1 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                            
+                                {% if week1Post.projectIsDenied1 == True %} <!--<span class="badge badge-danger">Reddedildi</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+                                
+                            </td>
+                            <td class="project-actions text-right">
+                                <a class="btn btn btn-outline-primary btn-sm" href="{% url 'pollsDetail' week1Post.pk %}">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    Görüntüle
+                                </a>
+                                
+                                
+                            </td>
+                        </tr>
+            
+            
+                        {% endfor %}
+                    {% endif %}
+            
+            
+                    
+            
+            
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="pills-hafta2" role="tabpanel" aria-labelledby="pills-hafta2-tab">
+                
+                
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">2.Haftadaki Projeler</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          
+                          <tbody>
+                                                                
+                            {% if hafta2 %}
+                                
+                            {% for week2Post in hafta2 %} 
+                                <tr>
+                                    <td>
+                                        #
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ week2Post.projectName2 }} {{ week2Post.projectSurname2 }}
+                                        </a>
+                                        <br/>
+                                        <small>
+                                            {{ week2Post.created_date2 }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline">
+                                            <p>{{ week2Post.projectPName2 }}</p>
+                                        </ul>
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                            </div>
+                                        </div>
+                                        <small>
+                                            25% Tamamlandı
+                                        </small>
+                                    </td>
+                                    <td class="project-state">
+                                        {% if week2Post.projectIsApproved2 == True %}<i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                                    
+                                        {% if week2Post.projectIsDenied2 == True %}<i class="far fa-thumbs-down" style="color: red;"></i>{% endif %}
+                                        
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn btn-outline-primary btn-sm" href="{% url 'pollsDetail2' week2Post.pk %}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Görüntüle
+                                        </a>
+                                        
+                                        
+                                    </td>
+                                </tr>
+                
+                
+                                {% endfor %}
+                                {% endif %}
+                
+                
+                            
+                
+                
+                                </tbody>
+              
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+                
+            </div>
+            
+            <div class="tab-pane fade" id="pills-hafta3" role="tabpanel" aria-labelledby="pills-hafta3-tab">
+                
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">3.Haftadaki Projeler</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          
+                          <tbody>
+                                                                
+                            {% if hafta3 %}
+                                
+                            {% for week3Post in hafta3 %} 
+                                <tr>
+                                    <td>
+                                        #
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ week3Post.projectName3 }} {{ week3Post.projectSurname3 }}
+                                        </a>
+                                        <br/>
+                                        <small>
+                                            {{ week3Post.created_date3 }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline">
+                                            <p>{{ week3Post.projectPName3 }}</p>
+                                        </ul>
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 37.5%">
+                                            </div>
+                                        </div>
+                                        <small>
+                                            37.5% Tamamlandı
+                                        </small>
+                                    </td>
+                                    <td class="project-state">
+                                        {% if week3Post.projectIsApproved3 == True %}<i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                                    
+                                        {% if week3Post.projectIsDenied3 == True %}<i class="far fa-thumbs-down" style="color: red;"></i>{% endif %}
+                                        
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn btn-outline-primary btn-sm" href="{% url 'pollsDetail3' week3Post.pk %}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Görüntüle
+                                        </a>
+                                        
+                                        
+                                    </td>
+                                </tr>
+                
+                
+                                {% endfor %}
+                                {% endif %}
+                
+                
+                            
+                
+                
+                                </tbody>
+              
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="pills-hafta4" role="tabpanel" aria-labelledby="pills-hafta4-tab">
+                
+        
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">4.Haftadaki Projeler</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          
+                          <tbody>
+                                                                
+                            {% if hafta4 %}
+                                
+                            {% for week4Post in hafta4 %} 
+                                <tr>
+                                    <td>
+                                        #
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ week4Post.projectName4 }} {{ week4Post.projectSurname4 }}
+                                        </a>
+                                        <br/>
+                                        <small>
+                                            {{ week4Post.created_date4 }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline">
+                                            <p>{{ week4Post.projectPName4 }}</p>
+                                        </ul>
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                            </div>
+                                        </div>
+                                        <small>
+                                            50% Tamamlandı
+                                        </small>
+                                    </td>
+                                    <td class="project-state">
+                                        {% if week4Post.projectIsApproved4 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                                    
+                                        {% if week4Post.projectIsDenied4 == True %} <!--<span class="badge badge-danger">Reddedildi</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+                                        
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn btn-outline-primary btn-sm" href="{% url 'pollsDetail4' week4Post.pk %}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Görüntüle
+                                        </a>
+                                        
+                                        
+                                    </td>
+                                </tr>
+            
+            
+                                {% endfor %}
+                                {% endif %}
+            
+            
+                            
+            
+            
+                                </tbody>
+              
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="pills-hafta5" role="tabpanel" aria-labelledby="pills-hafta5-tab">
+                
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">5.Haftadaki Projeler</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          
+                          <tbody>
+                                                                
+                            {% if hafta5 %}
+                                
+                            {% for week5Post in hafta5 %} 
+                                <tr>
+                                    <td>
+                                        #
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ week5Post.projectName5 }} {{ week5Post.projectSurname5 }}
+                                        </a>
+                                        <br/>
+                                        <small>
+                                            {{ week5Post.created_date5 }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline">
+                                            <p>{{ week5Post.projectPName5 }}</p>
+                                        </ul>
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 62.5%">
+                                            </div>
+                                        </div>
+                                        <small>
+                                            62.5% Tamamlandı
+                                        </small>
+                                    </td>
+                                    <td class="project-state">
+                                        {% if week5Post.projectIsApproved5 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                                    
+                                        {% if week5Post.projectIsDenied5 == True %} <!--<span class="badge badge-danger">Reddedildi</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+                                        
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn btn-outline-primary btn-sm" href="{% url 'pollsDetail5' week5Post.pk %}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Görüntüle
+                                        </a>
+                                        
+                                        
+                                    </td>
+                                </tr>
+            
+            
+                                {% endfor %}
+                                {% endif %}
+            
+            
+                            
+            
+            
+                                </tbody>
+              
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-hafta6" role="tabpanel" aria-labelledby="pills-hafta6-tab">
+
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">6.Haftadaki Projeler</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          
+                          <tbody>
+                                                                
+                            {% if hafta6 %}
+                                
+                            {% for week6Post in hafta6 %} 
+                                <tr>
+                                    <td>
+                                        #
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ week6Post.projectName6 }} {{ week6Post.projectSurname6 }}
+                                        </a>
+                                        <br/>
+                                        <small>
+                                            {{ week6Post.created_date6 }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline">
+                                            <p>{{ week6Post.projectPName6 }}</p>
+                                        </ul>
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                            </div>
+                                        </div>
+                                        <small>
+                                            75% Tamamlandı
+                                        </small>
+                                    </td>
+                                    <td class="project-state">
+                                        {% if week6Post.projectIsApproved6 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                                        
+                                        {% if week6Post.projectIsDenied6 == True %} <!--<span class="badge badge-danger">Reddedildi</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+                                        
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn btn-outline-primary btn-sm" href="{% url 'pollsDetail6' week6Post.pk %}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Görüntüle
+                                        </a>
+                                        
+                                        
+                                    </td>
+                                </tr>
+            
+            
+                                {% endfor %}
+                                {% endif %}
+            
+            
+                            
+            
+            
+                                </tbody>
+              
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="pills-hafta7" role="tabpanel" aria-labelledby="pills-hafta7-tab">
+                
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">7.Haftadaki Projeler</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          
+                          <tbody>
+                                                                
+                            {% if hafta7 %}
+                                
+                            {% for week7Post in hafta7 %} 
+                                <tr>
+                                    <td>
+                                        #
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ week7Post.projectName7 }} {{ week7Post.projectSurname7 }}
+                                        </a>
+                                        <br/>
+                                        <small>
+                                            {{ week7Post.created_date7 }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline">
+                                            <p>{{ week7Post.projectPName7 }}</p>
+                                        </ul>
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 87.5%">
+                                            </div>
+                                        </div>
+                                        <small>
+                                            87.5% Tamamlandı
+                                        </small>
+                                    </td>
+                                    <td class="project-state">
+                                        {% if week7Post.projectIsApproved7 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                                        
+                                        {% if week7Post.projectIsDenied7 == True %} <!--<span class="badge badge-danger">Reddedildi</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+                                        
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn btn-outline-primary btn-sm" href="{% url 'pollsDetail7' week7Post.pk %}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Görüntüle
+                                        </a>
+                                        
+                                        
+                                    </td>
+                                </tr>
+            
+            
+                                {% endfor %}
+                                {% endif %}
+            
+            
+                            
+            
+            
+                            </tbody>
+              
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+            
+            </div>
+
+            <div class="tab-pane fade" id="pills-hafta8" role="tabpanel" aria-labelledby="pills-hafta8-tab">
+                
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">8.Haftadaki Projeler</h3>
+              
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table table-striped projects">
+                          <thead>
+                              <tr>
+                                  <th style="width: 1%">
+                                      #
+                                  </th>
+                                  <th style="width: 20%">
+                                      Proje Adı
+                                  </th>
+                                  <th style="width: 30%">
+                                      Hazırlayanlar
+                                  </th>
+                                  <th>
+                                      Proje Süreci
+                                  </th>
+                                  <th style="width: 8%" class="text-center">
+                                      Durum
+                                  </th>
+                                  <th style="width: 20%">
+                                  </th>
+                              </tr>
+                          </thead>
+                          
+                          <tbody>
+                                                                
+                            {% if hafta8 %}
+                                
+                            {% for week8Post in hafta8 %} 
+                                <tr>
+                                    <td>
+                                        #
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ week8Post.projectName8 }} {{ week8Post.projectSurname8 }}
+                                        </a>
+                                        <br/>
+                                        <small>
+                                            {{ week8Post.created_date8 }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline">
+                                            <p>{{ week8Post.projectPName8 }}</p>
+                                        </ul>
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                            </div>
+                                        </div>
+                                        <small>
+                                            100% Tamamlandı
+                                        </small>
+                                    </td>
+                                    <td class="project-state">
+                                        {% if week8Post.projectIsApproved8 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %}                    
+                                        {% if week8Post.projectIsDenied8 == True %} <!--<span class="badge badge-danger">Reddedildi</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+                                        
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn btn-outline-primary btn-sm" href="{% url 'pollsDetail8' week8Post.pk %}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Görüntüle
+                                        </a>
+                                        
+                                        
+                                    </td>
+                                </tr>
+            
+            
+                                {% endfor %}
+                                {% endif %}
+            
+            
+                            
+            
+            
+                                </tbody>
+              
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+            </div>
+
+          </div>
+    
+    
+    </div>
+    
+    
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"></h3>
+  
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+              <thead>
+                  <tr>
+                      <th style="width: 1%">
+                          #
+                      </th>
+                      <th style="width: 40%">
+                          Haber Başlığı
+                      </th>
+                      <th class="" style="width: 18%">
+                          Yazar
+                      </th>
+                      <th style="width: 8%" class="text-center">
+                          Durum
+                      </th>
+                      <th style="width: 20%">
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                                                
+                                
+                {% if haberler %}
+
+                {% for week1Post in haberler %}  
+
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                    <a>
+                        {{ week1Post.title }}
+                        
+                    </a>
+                    <br/>
+                    <small>
+                        {{ week1Post.created_date }}
+                    </small>
+                </td>
+                <td>
+                    <ul class="list-inline">
+                        <p>{{ week1Post.author }}</p>
+                    </ul>
+                </td>
+                
+                <td class="project-state">
+                    {% if week1Post.projectIsApproved1 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                
+                    {% if week1Post.projectIsDenied1 == True %} <!--<span class="badge badge-danger">Reddedildi</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+                    
+                </td>
+                <td class="project-actions text-right">
+                    <a class="btn btn btn-outline-primary btn-sm" href="{% url 'newsDetail' week1Post.id %}">
+                        <i class="fas fa-folder">
+                        </i>
+                        Görüntüle
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+
+
+            {% endfor %}
+        {% endif %}
+
+
+        
+
+
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+
+
+
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      
+
+
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"></h3>
+      
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="table table-striped projects">
+                  <thead>
+                      <tr>
+                          <th style="width: 1%">
+                              #
+                          </th>
+                          <th style="width: 40%">
+                              Blog Başlığı
+                          </th>
+                          <th class="" style="width: 18%">
+                              Yazar
+                          </th>
+                          <th style="width: 8%" class="text-center">
+                              Durum
+                          </th>
+                          <th style="width: 20%">
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                                                    
+                                    
+                    {% if bloglar %}
+    
+                    {% for week1Post in bloglar %}  
+    
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        <a>
+                            {{ week1Post.title }}
+                            
+                        </a>
+                        <br/>
+                        <small>
+                            {{ week1Post.created_date }}
+                        </small>
+                    </td>
+                    <td>
+                        <ul class="list-inline">
+                            <p>{{ week1Post.author }}</p>
+                        </ul>
+                    </td>
+                    
+                    <td class="project-state">
+                        {% if week1Post.projectIsApproved1 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+                    
+                        {% if week1Post.projectIsDenied1 == True %} <!--<span class="badge badge-danger">Reddedildi</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+                        
+                    </td>
+                    <td class="project-actions text-right">
+                        <a class="btn btn btn-outline-primary btn-sm" href="{% url 'blogDetail' week1Post.id %}">
+                            <i class="fas fa-folder">
+                            </i>
+                            Görüntüle
+                        </a>
+                        
+                        
+                    </td>
+                </tr>
+    
+    
+                {% endfor %}
+            {% endif %}
+    
+    
+            
+    
+    
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+
+
+
+    </div>
+  </div>
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Default box -->
+    
+    <!-- /.card -->
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+{% endblock content %}
+  

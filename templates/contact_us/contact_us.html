@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+   
+   <div id="wrapper" style="height: max-content;">        
+
+        <div class="page-title lb single-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-envelope-open-o bg-orange"></i> Bizimle İletişime Geçin! </h2>
+                    </div><!-- end col -->                                  
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="page-wrapper">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <h4>Tech Nedir?</h4>
+                                    <p>Tech, size güncel haberleri sunan, kullanıcıların açabildiği blog yazılarını okumanıza olanak veren. 
+                                        Okul için yapacağınız projelere öğretim görevlisine sunmanızı sağlayan biz platformdur.</p>
+                   
+             
+                                    <h4>Bize Nasıl Ulaşabilirsiniz?</h4>
+                                    <p>Aşağıdaki formu doldurduktan sonra en kısa sürede mail ile yanıt alabilirsiniz.</p>
+                                </div>
+                                <div class="col-lg-7">
+                                    <form class="form-wrapper" action="" method="post">
+                                        {% csrf_token %}  
+                                        <input type="text" class="form-control" placeholder="Ad" name="name">
+                                        <input type="text" class="form-control" placeholder="Soyad" name="surname">
+                                        <input type="email" class="form-control" placeholder="Email adresi" name="email">
+                                        <input type="number" class="form-control" placeholder="Telefon" name="phone_n">
+                                        <input type="text" class="form-control" placeholder="Konu" name="subject">
+                                        <textarea class="form-control" placeholder="Mesajınız" name="message"></textarea>
+                                        <button type="submit" class="btn btn-primary">Gönder <i class="fa fa-envelope-open-o"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>   
+
+        <div class="dmtop">Scroll to Top</div>
+        
+    </div><!-- end wrapper -->
+
+{% endblock %}

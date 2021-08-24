@@ -1,0 +1,858 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container mx-auto" style="margin-top: 125px; margin-bottom: 5%; ">
+
+  <!--Project Idea Detail-->  
+{% if projectIdeaDetailPost %}
+  <div>
+    <div>
+      <h1 style="display:inline;">{{ projectIdeaDetailPost.projectPName}}</h1>
+      <h6 class="ml-2"  style="display:inline;">
+        {% if projectIdeaDetailPost.projectIsApproved == True %} <span class="badge badge-success">Onaylandı</span>{% endif %}                   
+        {% if projectIdeaDetailPost.projectIsDenied == True %} <span class="badge badge-danger">Reddedildi</span> {% endif %}
+    </h6>  
+    </div>
+    <div class="mt-4">       
+      <p>{{ projectIdeaDetailPost.projectDescription|safe}}</p>
+      <span>{{ projectIdeaDetailPost.projectName }} {{ projectIdeaDetailPost.projectSurname }} {{ projectIdeaDetailPost.projectNumber }}</span>
+      <span style="right: 0; position: absolute;">{{ projectIdeaDetailPost.created_date}}</span>
+    </div>
+
+      <hr class="invis1">   
+      <hr class="invis1">
+      {% if request.user.is_superuser %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved">
+            <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied">
+
+            <div class="row mt-4">
+
+                <div class="col mx-auto">
+                  <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()">Onay</button>
+                </div>
+                <div class="col mx-auto">
+                  <button class="btn btn-outline-danger " type="submit" name="Submit" onclick="uncheck()">Red</button>
+                </div>
+
+            </div>
+
+        </form>
+
+      {% endif %}
+
+
+     
+
+        <!--Comment Post-->
+        <hr class="invis1">
+        <div class="custombox clearfix">
+            <h4 class="small-title" style="word-spacing: 4px;">{{projectIdeaDetailPost.comments.count}} Yorum</h4>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="comments-list">
+
+                      {% if not projectIdeaDetailPost.comments.all %}
+                        <p>Henüz yorum yapılmadı...</p>
+                      {% endif %}
+
+                        {% for comment in projectIdeaDetailPost.comments.all %}
+                        <div class="media">
+                            <a class="media-left" href="#">
+                                <img src="upload/author.jpg" alt="" class="rounded-circle">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                                <p>{{comment.body|safe}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end custom-box -->
+
+
+
+      <hr class="invis1">
+      {% if request.user.is_superuser %}
+
+        <div class="custombox clearfix">
+          <h4 class="small-title">Bir yorum yapın</h4>
+          <div class="row">
+              <div class="col-lg-12">
+                  <form method = "post"  class="form-wrapper">
+                      {% csrf_token %}
+                      <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+                      <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+
+      {% endif %}
+
+      
+  </div>
+{% endif %}
+
+
+
+  <!--week 1 detail-->  
+{% if week1DetailPost %}
+    <div>
+        <h1 style="display:inline;">{{ week1DetailPost.projectPName1}} </h1>
+        <h6 class="ml-2"  style="display:inline;">
+          {% if week1DetailPost.projectIsApproved1 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+          {% if week1DetailPost.projectIsDenied1 == True %} <!--<span class="badge badge-danger">Unsuccessful</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+        </h6> 
+        <div class="mt-4">    
+          <p>{{ week1DetailPost.projectDescription1|safe}}</p>
+          <span>{{ week1DetailPost.projectName1 }} {{ week1DetailPost.projectSurname1 }} {{ week1DetailPost.projectNumber1 }}</span>
+          <span style="right: 0; position: absolute;">{{ week1DetailPost.created_date}}</span>
+        </div>  
+        <hr class="invis1">
+        <hr class="invis1">
+        {% if request.user.is_superuser %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            
+            <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved1">
+            <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied1">
+
+            <div class="row mt-4">
+
+                <div class="col mx-auto">
+                  <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()"><i class="far fa-thumbs-up"></i> Beğen</button>
+                </div>
+                
+
+            </div>
+
+        </form>
+        {% endif %}
+
+         <!--Comment Post-->
+         <hr class="invis1">
+         <hr class="invis1">
+         <div class="custombox clearfix">
+             <h4 class="small-title" style="word-spacing: 4px;">{{week1DetailPost.comments1.count}} Yorum</h4>
+             <div class="row">
+                 <div class="col-lg-12">
+                     <div class="comments-list">
+ 
+                       {% if not week1DetailPost.comments1.all %}
+                         <p>Henüz yorum yapılmadı...</p>
+                       {% endif %}
+ 
+                         {% for comment in week1DetailPost.comments1.all %}
+                         <div class="media">
+                             <a class="media-left" href="#">
+                                 <img src="upload/author.jpg" alt="" class="rounded-circle">
+                             </a>
+                             <div class="media-body">
+                                 <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                                 <p>{{comment.body|safe}}</p>
+                             </div>
+                         </div>
+                         {% endfor %}
+ 
+                     </div>
+                 </div><!-- end col -->
+             </div><!-- end row -->
+         </div><!-- end custom-box -->
+ 
+ 
+ 
+      <hr class="invis1">
+      {% if request.user.is_superuser %}
+ 
+        <div class="custombox clearfix">
+          <h4 class="small-title">Bir yorum yapın</h4>
+          <div class="row">
+            <div class="col-lg-12">
+              <form method = "post"  class="form-wrapper">
+                {% csrf_token %}
+                <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+                <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+              </form>
+            </div>
+          </div>
+        </div>
+ 
+      {% endif %}
+
+
+    </div>
+{% endif %}
+
+
+
+  <!--week 2 detail-->  
+{% if week2DetailPost %}
+  <div>
+     
+      <h1 style="display:inline;">{{ week2DetailPost.projectPName2}} </h1>
+      <h6 class="ml-2"  style="display:inline;">
+        {% if week2DetailPost.projectIsApproved2 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+        {% if week2DetailPost.projectIsDenied2 == True %} <!--<span class="badge badge-danger">Unsuccessful</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+      </h6>   
+      <div> 
+        <p>{{ week2DetailPost.projectDescription2|safe}}</p>
+        <span >{{ week2DetailPost.projectName2 }} {{ week2DetailPost.projectSurname2 }} {{ week2DetailPost.projectNumber2 }} </span>
+        <span style="right: 0; position: absolute;">{{ week2DetailPost.created_date2}}</span>
+      </div>
+
+      <hr class="invis1">
+      {% if request.user.is_superuser %}
+      <form action="" method="POST">
+          {% csrf_token %}
+          
+          <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved2">
+          <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied2">
+
+          <div class="row mt-4">
+
+            <div class="col mx-auto">
+              <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()"><i class="far fa-thumbs-up"></i> Beğen</button>
+            </div>
+            
+
+          </div>
+
+      </form>
+      {% endif %}
+
+        <!--Comment Post-->
+        <hr class="invis1">
+        <hr class="invis1">
+        <div class="custombox clearfix">
+            <h4 class="small-title" style="word-spacing: 4px;">{{week2DetailPost.comments2.count}} Yorum</h4>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="comments-list">
+
+                      {% if not week2DetailPost.comments2.all %}
+                        <p>Henüz yorum yapılmadı...</p>
+                      {% endif %}
+
+                        {% for comment in week2DetailPost.comments2.all %}
+                        <div class="media">
+                            <a class="media-left" href="#">
+                                <img src="upload/author.jpg" alt="" class="rounded-circle">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                                <p>{{comment.body|safe}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end custom-box -->
+
+
+
+     <hr class="invis1">
+     {% if request.user.is_superuser %}
+
+       <div class="custombox clearfix">
+         <h4 class="small-title">Bir yorum bırakın</h4>
+         <div class="row">
+           <div class="col-lg-12">
+             <form method = "post"  class="form-wrapper">
+               {% csrf_token %}
+               <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+               <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+             </form>
+           </div>
+         </div>
+       </div>
+
+     {% endif %}
+  </div>
+{% endif %}
+
+
+ <!--week 3 detail-->  
+ {% if week3DetailPost %}
+ <div>
+     
+
+     <h1 style="display:inline;">{{ week3DetailPost.projectPName3}} </h1>
+     <h6 class="ml-2" style="display:inline;">
+      {% if week3DetailPost.projectIsApproved3 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+      {% if week3DetailPost.projectIsDenied3 == True %} <!--<span class="badge badge-danger">Unsuccessful</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+      </h6> 
+
+    <div class="mt-4">   
+     <p>{{ week3DetailPost.projectDescription3|safe}}</p>
+     <span>{{ week3DetailPost.projectName3 }} {{ week3DetailPost.projectSurname3 }} {{ week3DetailPost.projectNumber3 }} </span>
+     <span style="right: 0; position: absolute;">{{ week3DetailPost.created_date3}}</span>
+    </div>
+
+    <hr class="invis1">
+     {% if request.user.is_superuser %}
+     <form action="" method="POST">
+         {% csrf_token %}
+         
+         <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved3">
+         <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied3">
+
+         <div class="row mt-4">
+
+            <div class="col mx-auto">
+              <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()"><i class="far fa-thumbs-up"></i> Beğen</button>
+            </div>
+            
+         </div>
+
+     </form>
+     {% endif %}
+
+      <!--Comment Post-->
+      <hr class="invis1">
+      <hr class="invis1">
+      <div class="custombox clearfix">
+          <h4 class="small-title" style="word-spacing: 4px;">{{week3DetailPost.comments3.count}} Yorum</h4>
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="comments-list">
+
+                    {% if not week3DetailPost.comments3.all %}
+                      <p>Henüz yorum yapılmadı...</p>
+                    {% endif %}
+
+                      {% for comment in week3DetailPost.comments3.all %}
+                      <div class="media">
+                          <a class="media-left" href="#">
+                              <img src="upload/author.jpg" alt="" class="rounded-circle">
+                          </a>
+                          <div class="media-body">
+                              <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                              <p>{{comment.body|safe}}</p>
+                          </div>
+                      </div>
+                      {% endfor %}
+
+                  </div>
+              </div><!-- end col -->
+          </div><!-- end row -->
+      </div><!-- end custom-box -->
+
+
+
+   <hr class="invis1">
+   {% if request.user.is_superuser %}
+
+     <div class="custombox clearfix">
+       <h4 class="small-title">Bir yorum yapın</h4>
+       <div class="row">
+         <div class="col-lg-12">
+           <form method = "post"  class="form-wrapper">
+             {% csrf_token %}
+             <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+             <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+           </form>
+         </div>
+       </div>
+     </div>
+
+   {% endif %}
+
+ </div>
+{% endif %}
+
+
+{% if week4DetailPost %}
+<div>
+    
+    <h1 style="display:inline;">{{ week4DetailPost.projectPName4}} </h1>
+    <h6 class="ml-2" style="display:inline;">
+      {% if week4DetailPost.projectIsApproved4 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+      {% if week4DetailPost.projectIsDenied4 == True %} <!--<span class="badge badge-danger">Unsuccessful</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+    </h6> 
+    
+    <div class="mt-4">
+    <p>{{ week4DetailPost.projectDescription4|safe}}</p>
+    <span>{{ week4DetailPost.projectName4 }} {{ week4DetailPost.projectSurname4 }} {{ week4DetailPost.projectNumber4 }} </span>
+    <span style="right: 0; position: absolute;">{{ week4DetailPost.created_date4}}</span>
+    </div>
+
+
+    <hr class="invis1">
+     {% if request.user.is_superuser %}
+     <form action="" method="POST">
+         {% csrf_token %}
+         
+         <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved4">
+         <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied4">
+
+         <div class="row mt-4">
+
+            <div class="col mx-auto">
+              <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()"><i class="far fa-thumbs-up"></i> Like</button>
+            </div>
+            
+
+         </div>
+
+     </form>
+     {% endif %}
+
+
+     <!--Comment Post-->
+     <hr class="invis1">
+     <hr class="invis1">
+     <div class="custombox clearfix">
+         <h4 class="small-title" style="word-spacing: 4px;">{{week4DetailPost.comments4.count}} Yorum</h4>
+         <div class="row">
+             <div class="col-lg-12">
+                 <div class="comments-list">
+
+                   {% if not week4DetailPost.comments4.all %}
+                     <p>Henüz yorum yapılmadı...</p>
+                   {% endif %}
+
+                     {% for comment in week4DetailPost.comments4.all %}
+                     <div class="media">
+                         <a class="media-left" href="#">
+                             <img src="upload/author.jpg" alt="" class="rounded-circle">
+                         </a>
+                         <div class="media-body">
+                             <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                             <p>{{comment.body|safe}}</p>
+                         </div>
+                     </div>
+                     {% endfor %}
+
+                 </div>
+             </div><!-- end col -->
+         </div><!-- end row -->
+     </div><!-- end custom-box -->
+
+
+
+  <hr class="invis1">
+  {% if request.user.is_superuser %}
+
+    <div class="custombox clearfix">
+      <h4 class="small-title">Bir yorum yapın</h4>
+      <div class="row">
+        <div class="col-lg-12">
+          <form method = "post"  class="form-wrapper">
+            {% csrf_token %}
+            <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+            <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  {% endif %}
+
+</div>
+{% endif %}
+
+
+{% if week5DetailPost %}
+<div>
+    
+
+    <h1 style="display:inline;">{{ week5DetailPost.projectPName5}} </h1>
+    <h6 class="ml-2" style="display:inline;">
+      {% if week5DetailPost.projectIsApproved5 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+      {% if week5DetailPost.projectIsDenied5 == True %} <!--<span class="badge badge-danger">Unsuccessful</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+    </h6> 
+     
+    <div class="mt-4">
+    <p>{{ week5DetailPost.projectDescription5|safe}}</p>
+    <span>{{ week5DetailPost.projectName5 }} {{ week5DetailPost.projectSurname5 }} {{ week5DetailPost.projectNumber5 }} </span>
+    <span style="right: 0; position: absolute;">{{ week5DetailPost.created_date5}}</span>
+    </div>
+
+    <hr class="invis1">
+     {% if request.user.is_superuser %}
+     <form action="" method="POST">
+         {% csrf_token %}
+         
+         <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved5">
+         <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied5">
+
+         <div class="row mt-4">
+
+            <div class="col mx-auto">
+              <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()"><i class="far fa-thumbs-up"></i> Beğen</button>
+            </div>
+            
+
+         </div>
+
+     </form>
+     {% endif %}
+
+
+
+     <!--Comment Post-->
+     <hr class="invis1">
+     <hr class="invis1">
+     <div class="custombox clearfix">
+         <h4 class="small-title" style="word-spacing: 4px;">{{week5DetailPost.comments5.count}} Yorum</h4>
+         <div class="row">
+             <div class="col-lg-12">
+                 <div class="comments-list">
+
+                   {% if not week5DetailPost.comments5.all %}
+                     <p>Henüz yorum yapılmadı...</p>
+                   {% endif %}
+
+                     {% for comment in week5DetailPost.comments5.all %}
+                     <div class="media">
+                         <a class="media-left" href="#">
+                             <img src="upload/author.jpg" alt="" class="rounded-circle">
+                         </a>
+                         <div class="media-body">
+                             <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                             <p>{{comment.body|safe}}</p>
+                         </div>
+                     </div>
+                     {% endfor %}
+
+                 </div>
+             </div><!-- end col -->
+         </div><!-- end row -->
+     </div><!-- end custom-box -->
+
+
+
+  <hr class="invis1">
+  {% if request.user.is_superuser %}
+
+    <div class="custombox clearfix">
+      <h4 class="small-title">Bir yorum yapın</h4>
+      <div class="row">
+        <div class="col-lg-12">
+          <form method = "post"  class="form-wrapper">
+            {% csrf_token %}
+            <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+            <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  {% endif %}
+
+
+</div>
+{% endif %}
+
+
+ <!--week 6 detail-->  
+ {% if week6DetailPost %}
+ <div>
+     
+
+     <h1 style="display:inline;">{{ week6DetailPost.projectPName6}} </h1>
+     <h6 class="ml-2" style="display:inline;">
+      {% if week6DetailPost.projectIsApproved6 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+      {% if week6DetailPost.projectIsDenied6 == True %} <!--<span class="badge badge-danger">Unsuccessful</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+    </h6> 
+     
+       
+     <div class="mt-4">
+     <p>{{ week6DetailPost.projectDescription6|safe}}</p>
+     <span>{{ week6DetailPost.projectName6 }} {{ week6DetailPost.projectSurname6 }} {{ week6DetailPost.projectNumber6 }} </span>
+     <span style="right: 0; position: absolute;">{{ week6DetailPost.created_date6}}</span>
+     </div>
+
+     <hr class="invis1">
+     {% if request.user.is_superuser %}
+     <form action="" method="POST">
+         {% csrf_token %}
+         
+         <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved6">
+         <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied6">
+
+         <div class="row mt-4">
+
+            <div class="col mx-auto">
+              <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()"><i class="far fa-thumbs-up"></i> Beğen</button>
+            </div>
+            
+
+         </div>
+
+     </form>
+     {% endif %}
+
+
+      <!--Comment Post-->
+      <hr class="invis1">
+      <hr class="invis1">
+      <div class="custombox clearfix">
+          <h4 class="small-title" style="word-spacing: 4px;">{{week6DetailPost.comments6.count}} Yorum</h4>
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="comments-list">
+ 
+                    {% if not week6DetailPost.comments6.all %}
+                      <p>Henüz yorum yapılmadı...</p>
+                    {% endif %}
+ 
+                      {% for comment in week6DetailPost.comments6.all %}
+                      <div class="media">
+                          <a class="media-left" href="#">
+                              <img src="upload/author.jpg" alt="" class="rounded-circle">
+                          </a>
+                          <div class="media-body">
+                              <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                              <p>{{comment.body|safe}}</p>
+                          </div>
+                      </div>
+                      {% endfor %}
+ 
+                  </div>
+              </div><!-- end col -->
+          </div><!-- end row -->
+      </div><!-- end custom-box -->
+ 
+ 
+ 
+   <hr class="invis1">
+   {% if request.user.is_superuser %}
+ 
+     <div class="custombox clearfix">
+       <h4 class="small-title">Bir yorum yapın</h4>
+       <div class="row">
+         <div class="col-lg-12">
+           <form method = "post"  class="form-wrapper">
+             {% csrf_token %}
+             <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+             <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+           </form>
+         </div>
+       </div>
+     </div>
+ 
+   {% endif %}
+ 
+ </div>
+{% endif %}
+
+
+
+
+ <!--week 7 detail-->  
+ {% if week7DetailPost %}
+ <div>
+     
+
+     <h1 style="display:inline;">{{ week7DetailPost.projectPName7}} </h1>
+     <h6 class="ml-2" style="display:inline;">
+      {% if week7DetailPost.projectIsApproved7 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+      {% if week7DetailPost.projectIsDenied7 == True %} <!--<span class="badge badge-danger">Unsuccessful</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+    </h6> 
+      
+     <div class="mt-4">
+     <p>{{ week7DetailPost.projectDescription7|safe}}</p>
+     <span>{{ week7DetailPost.projectName7 }} {{ week7DetailPost.projectSurname7 }} {{ week7DetailPost.projectNumber7 }} </span>
+     <span style="right: 0; position: absolute;">{{ week7DetailPost.created_date7}}</span>
+    </div>
+
+    <hr class="invis1">
+    {% if request.user.is_superuser %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+        <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved7">
+        <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied7">
+
+        <div class="row mt-4">
+
+           <div class="col mx-auto">
+             <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()"><i class="far fa-thumbs-up"></i> Beğen</button>
+           </div>
+           
+
+        </div>
+
+    </form>
+    {% endif %}
+
+     <!--Comment Post-->
+     <hr class="invis1">
+     <hr class="invis1">
+     <div class="custombox clearfix">
+         <h4 class="small-title" style="word-spacing: 4px;">{{week7DetailPost.comments7.count}} Yorum</h4>
+         <div class="row">
+             <div class="col-lg-12">
+                 <div class="comments-list">
+
+                   {% if not week7DetailPost.comments7.all %}
+                     <p>Henüz yorum yapılmadı...</p>
+                   {% endif %}
+
+                     {% for comment in week7DetailPost.comments7.all %}
+                     <div class="media">
+                         <a class="media-left" href="#">
+                             <img src="upload/author.jpg" alt="" class="rounded-circle">
+                         </a>
+                         <div class="media-body">
+                             <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                             <p>{{comment.body|safe}}</p>
+                         </div>
+                     </div>
+                     {% endfor %}
+
+                 </div>
+             </div><!-- end col -->
+         </div><!-- end row -->
+     </div><!-- end custom-box -->
+
+
+
+  <hr class="invis1">
+  {% if request.user.is_superuser %}
+
+    <div class="custombox clearfix">
+      <h4 class="small-title">Bir yorum yapın</h4>
+      <div class="row">
+        <div class="col-lg-12">
+          <form method = "post"  class="form-wrapper">
+            {% csrf_token %}
+            <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+            <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  {% endif %}
+
+ </div>
+{% endif %}
+
+
+
+ <!--week 8 detail-->  
+ {% if week8DetailPost %}
+ <div>
+     
+
+     <h1 style="display:inline;">{{ week8DetailPost.projectPName8}} </h1>
+     <h6 class="ml-2" style="display:inline;">
+      {% if week8DetailPost.projectIsApproved8 == True %} <!--<span class="badge badge-success">uccess</span>--><i class="far fa-thumbs-up" style="color: green;"></i>{% endif %} 
+      {% if week8DetailPost.projectIsDenied8 == True %} <!--<span class="badge badge-danger">Unsuccessful</span>--> <i class="far fa-thumbs-down" style="color: red;"></i> {% endif %}
+    </h6> 
+  
+     <div class="mt-4">
+     <p>{{ week8DetailPost.projectDescription8|safe}}</p>
+     <span>{{ week8DetailPost.projectName8 }} {{ week8DetailPost.projectSurname8 }} {{ week8DetailPost.projectNumber8 }}</span>
+     <span style="right: 0; position: absolute;">{{ week8DetailPost.created_date8}}</span>
+     </div>
+
+
+     <hr class="invis1">
+     {% if request.user.is_superuser %}
+     <form action="" method="POST">
+         {% csrf_token %}
+         
+         <input hidden class="form-control" type="checkbox" id="myCheck" name="projectIsApproved8">
+         <input hidden  class="form-control" type="checkbox" id="myCheck2" name="projectIsDenied8">
+
+         <div class="row mt-4">
+
+            <div class="col mx-auto">
+              <button class="btn btn-outline-success "  type="submit" name="Submit" onclick="check()"><i class="far fa-thumbs-up"></i> Beğen</button>
+            </div>
+            
+
+         </div>
+
+     </form>
+     {% endif %}
+
+     <!--Comment Post-->
+     <hr class="invis1">
+     <hr class="invis1">
+     <div class="custombox clearfix">
+         <h4 class="small-title" style="word-spacing: 4px;">{{week8DetailPost.comments8.count}} Yorum</h4>
+         <div class="row">
+             <div class="col-lg-12">
+                 <div class="comments-list">
+
+                   {% if not week8DetailPost.comments8.all %}
+                     <p>Henüz yorum yapılmadı...</p>
+                   {% endif %}
+
+                     {% for comment in week8DetailPost.comments8.all %}
+                     <div class="media">
+                         <a class="media-left" href="#">
+                             <img src="upload/author.jpg" alt="" class="rounded-circle">
+                         </a>
+                         <div class="media-body">
+                             <h4 class="media-heading user_name">{{ comment.name}} <small>{{comment.date_added}}</small></h4>
+                             <p>{{comment.body|safe}}</p>
+                         </div>
+                     </div>
+                     {% endfor %}
+
+                 </div>
+             </div><!-- end col -->
+         </div><!-- end row -->
+     </div><!-- end custom-box -->
+
+
+
+  <hr class="invis1">
+  {% if request.user.is_superuser %}
+
+    <div class="custombox clearfix">
+      <h4 class="small-title">Bir yorum yapın</h4>
+      <div class="row">
+        <div class="col-lg-12">
+          <form method = "post"  class="form-wrapper">
+            {% csrf_token %}
+            <textarea class="form-control" placeholder="Your comment" name="body"></textarea>
+            <button type="submit" class="btn btn-outline-primary">Yorum Yap</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  {% endif %}
+
+ </div>
+{% endif %}
+
+
+</div>
+
+
+
+<script>
+function check() {
+  document.getElementById("myCheck").checked = true;
+  document.getElementById("myCheck2").checked = false;
+  
+}
+
+function uncheck() {
+  document.getElementById("myCheck").checked = false;
+  document.getElementById("myCheck2").checked = true;
+}
+</script>
+
+
+{% endblock %}

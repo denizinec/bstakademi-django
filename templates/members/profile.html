@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load humanize %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  
+
+  <div class="container" style="margin-top: 6%;">
+
+      <div class="form-group">
+          <form action="" method="POST">
+              <div class="modal-body">
+                  {% csrf_token %}    
+                  <input class="form-control" type="text" placeholder="Ad" name="name">
+                  <input class="form-control mt-2" type="text" placeholder="Soyad" name="surname">
+                  <input class="form-control mt-2" type="number" placeholder="Numara" name="school_n">
+                  <input class="form-control mt-2" type="text" placeholder="Okul / Bölüm" name="school">
+                  <input class="form-control mt-2" type="email" placeholder="Eposta" name="email">
+                  <input class="form-control mt-2" type="number" placeholder="Telefon Numarası" name="phone_n">
+                  <input class="form-control mt-2" type="text" placeholder="Biyografi" name="bio">
+                  <input class="form-control mt-2" type="text" placeholder="Yetenekler" name="skills">
+              </div>
+              <div class="modal-footer">
+
+                  <button type="submit" class="btn btn btn-outline-success" name="Submit">Güncelle</button>
+                  <a type="button" href="{% url 'pollsIndex'  %}" class="btn btn btn-outline-danger">Kapat</a>
+              
+              </div>
+              </div>
+          </form>
+      </div>
+  
+    </div>
+
+{% endblock content %}

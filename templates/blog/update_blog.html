@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="mt-5 mb-5 col-lg-7 offset-lg-1">
+            <form class="create-form" method="POST" enctype="multipart/form-data"> 
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="id_title">Başlık</label>
+                    <input class="form-control" type="text" name="title" id="id_title" placeholder="Title"
+                    required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_body">İçerik</label>
+                    <textarea class="form-control" rows="10" type="text" name="content" id="id_body" placeholder="Content"
+                    required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_summery">İçerik</label>
+                    <textarea class="form-control" rows="10" type="text" name="summary" id="id_summary" placeholder="Summary"
+                    required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_image">Fotoğraf</label>
+                    <input type="file" name="news_image" id="id_iamge" accept="image/*" required>
+                </div>
+
+                <button class="submit-button btn btn-lg btn-info btn-block" type="submit">Güncelle</button>
+            
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#id_body, #id_summary').summernote({
+    placeholder: 'Açıklama',
+    tabsize: 2,
+    height: 150,
+    codemirror: { 
+        theme: 'sandstone'
+      }
+    });
+</script>
+
+{% endblock content %}

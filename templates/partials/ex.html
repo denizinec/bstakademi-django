@@ -1,0 +1,90 @@
+{% load static %}
+
+{% block content %}
+
+<!-- <div class="col-md-5"">
+    <div class="text-center p-3 mt-1">
+        <img src="img/ısaacasimov.jpg" alt="" class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow">
+    </div>
+    <ul class="" style="list-style-type:none; cursor:pointer">
+        <li id="new"> <a href="{% url 'dnew' %}">News</a> </li>
+        <li id="blog"> <a href="{% url 'dblog' %}">Blogs</a> </li>
+        <li id="workshop"><a href="{% url 'pollsIndex' %}">Workshop</a> </li>
+        <li id="settings"><a>Profile Settings</a> </li>
+    </ul>
+</div> -->
+
+
+
+
+
+
+
+<div class="col-md-3">
+
+    <!-- Profile Image -->
+    <div class="card card-primary card-outline">
+      <div class="card-body box-profile">
+        <div class="float-right">
+          {% for profilePost in profilePost %}
+            <button type="button"  class="btn btn-info " data-toggle="modal" data-target="#ProfileForm">
+              <a class="text-white" href="{% url 'profile' profilePost.id %}"> <i class="far fa-edit"></i> 
+              </a> 
+            </button>
+          {% endfor %}
+          
+      </div>
+        <div class="ml-5 mt-2 text-center">
+          <img class="profile-user-img img-fluid img-circle"
+              src="/img/user_image.jpg"
+              alt="">
+        </div>
+
+        <h3 class="profile-username text-center">{{ user }}</h3>
+        
+
+        <p class="text-muted text-center">{{ user.profile.name }} {{ user.profile.surname }}</p>
+
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Hakkımda</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <strong><i class="fas fa-user-graduate"></i> Eğitim</strong>
+
+        <p class="text-muted">
+          {{ user.profile.school }}
+        </p>
+
+        <hr>
+
+        <strong><i class="fas fa-book"></i> Biyografi</strong>
+
+        <p class="text-muted">{{ user.profile.bio }}</p>
+
+        <hr>
+
+        <strong><i class="fas fa-pencil-alt mr-1"></i> Yetenekler</strong>
+
+        <p class="text-muted">
+          {{ user.profile.skills }}
+        </p>
+
+        <hr>
+
+        <strong><i class="fas fa-phone-alt"></i> İletişim</strong>
+
+        <p class="text-muted" style="font-weight: bold;">+{{ user.profile.phone_n }}</p>
+        <p class="text-muted">{{ user.profile.email }}</p>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block content %}
+<div style="margin-bottom: 4.5%; margin-top: 10%;">
+    
+    <div class="container mx-auto my">
+        <p style="font-size: large;">Tech, size güncel haberleri sunan, kullanıcıların açabildiği blog yazılarını okumanıza olanak veren. Okul için yapacağınız projelere öğretim görevlisine sunmanızı sağlayan biz platformdur.</p>
+    <hr>
+    <div class="row mx-auto p-4">
+
+            <div class="I card my-3 w-25 mx-auto float-left col-md-4 m-4">
+                <img src="{% static 'img/deniz.jpg' %}" alt="" class="card-img-top "  style="height: 300px;">
+                <div class="card-body"><!--card body-->
+                    <p class="card-title" style="font-size: 25px; font-weight: bold;">Deniz İneç</p>
+                    
+                </div>
+                
+            </div>
+
+            <div class="I card my-3 w-25 float-left mx-auto col-md-4 m-4">
+                <img src="{% static 'img/mustafa2.jpg' %}" alt="" class="card-img-top " style="height: 300px;">
+                <div class="card-body"><!--card body-->
+                    <p class="card-title" style="font-size: 25px; font-weight: bold;">Mustafa Baybars Keskin</p>
+                   
+                </div>
+                
+            </div>
+ 
+            <div class="I card my-3 w-25 loat-left mx-auto col-md-4 m-4">
+                <img src="{% static 'img/ilkin.jpg' %}" alt="" class="card-img-top f" style="height: 300px;">
+                <div class="card-body"><!--card body-->
+                    <p class="card-title" style="font-size: 25px; font-weight: bold;">İlkin Kiraz</p>
+                    
+                </div>
+            
+        </div>
+        
+    </div>
+    <hr>
+    </div>
+</div>
+{% endblock %}
+
+
+

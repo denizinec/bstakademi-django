@@ -1,0 +1,133 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+    
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Profil</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="{% url 'newsIndex' %}">Anasayfa</a></li>
+                  <li class="breadcrumb-item active">Profilim</li>
+                  <li class="breadcrumb-item active">Bloglarım</li>
+  
+                </ol>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+    
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+  
+  
+  
+                {% include 'partials/ex.html' %}
+  
+  
+  
+  
+              <!-- /.col -->
+              <div class="col-md-9">
+                <div class="card">
+                  <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item"><a class="nav-link" href="{% url 'pollsIndex' %}" >Projelerim</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'dnew' %}" >Haberlerim</a></li>
+                      <li class="nav-item"><a class="nav-link" href="{% url 'dblog' %}" >Bloglarım</a></li>
+                    </ul>
+                  </div><!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="active tab-pane" id="activity">
+                        <!-- Post -->
+                        <div class="post">
+                        
+                            <div class="col-md-8 pl-4 mt-5 mx-auto" style="margin-bottom: 5%;">
+                                <form class="create-form" method="POST" enctype="multipart/form-data"> 
+                                    {% csrf_token %}
+                    
+                                    <div class="form-group">
+                                        <label for="id_title">Başlık</label>
+                                        <input class="form-control" type="text" name="title" id="id_title" placeholder="Title"
+                                        required autofocus>
+                                    </div>
+                    
+                                    <div class="form-group">
+                                        <label for="id_content">İçerik</label>
+                                        <textarea class="form-control" rows="10" type="text" name="content" id="id_content" placeholder="Content"
+                                        required></textarea>
+                                    </div>
+                    
+                                    <div class="form-group">
+                                        <label for="id_summery">Açıklama</label>
+                                        <textarea class="form-control" rows="10" type="text" name="summary" id="id_summary" placeholder="Summary"
+                                        required></textarea>
+                                    </div>
+                    
+                                    <div class="form-group">
+                                        <label for="id_image">Fotoğraf</label>
+                                        <input type="file" name="news_image" id="id_iamge" accept="image/*" required>
+                                    </div>
+                    
+                                    <button class="submit-button btn btn-lg btn-primary btn-block" type="submit">Oluştur</button>
+                                
+                                </form>
+                            </div>
+                          
+                        </div>
+                      
+                      </div>
+                      <!-- /.tab-pane -->
+                      <div class="tab-pane" id="timeline">
+                        <!-- The timeline -->
+                        <div class="timeline timeline-inverse">
+                         
+  
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+        </section>
+      
+  
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    
+    <!-- jQuery -->
+    
+    </body>
+
+    <script>
+        $('#id_content, #id_summary').summernote({
+        placeholder: 'Açıklama',
+        tabsize: 2,
+        height: 150,
+        codemirror: { 
+            theme: 'sandstone'
+          }
+        });
+    </script>
+{% endblock content %}

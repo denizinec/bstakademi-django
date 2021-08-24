@@ -1,0 +1,315 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+                            
+<div id="wrapper"> 
+    <section class="section first-section">
+        <div class="container-fluid">
+            <div class="masonry-blog clearfix">
+
+<!--
+
+                {% if newsPosts1 %} 
+                    {% for newsPosts1 in newsPosts1 %}
+                   
+                        <div class="first-slot">
+                            <div class="masonry-box post-media">
+                                <img src="{{ newsPosts1.news_image.url }}" alt="" class="img-fluid">
+                                <div class="shadoweffect">
+                                    <div class="shadow-desc">
+                                        <div class="blog-meta">
+                                            <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
+                                            <h4><a href="{% url 'newsDetail' newsPosts1.id %}" title="">{{ newsPosts1.title }}</a></h4>
+                                            <small><a href="tech-single.html" title="">{{ newsPosts1.created_date }}</a></small>
+                                            <small><a href="tech-author.html" title="">{{ newsPosts1.author }}</a></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    {% endfor %}
+                {% endif %}
+
+            -->
+            <div>
+                {% if newsPosts1.IsApproved1 == True %} {{'Onaylandı'}} {% endif %} 
+                {% if week1Post.IsDenied1 == True %} {{"Onaylanmadı"}} {% endif %}
+            </div>
+
+                {% if newsPosts1 %} 
+                    {% for newsPosts1 in newsPosts1 %}
+                        <div class="first-slot col-lg-6 col-md-12 col-sm-12 h-100 pt-3"  style="float: left; padding: 0%;">
+                            <div class="bg-dark text-white" style="width: 100%; height: 449px;">
+                                <div class="masonry-box post-media" style="height: 449px;">
+                                <img  class="card-img" src="{{ newsPosts1.news_image.url }}" alt="Card image" style="height: 100%; width: 100%;">
+                                <div class="card-img-overlay">
+                                    <div class="shadoweffect">
+                                        <div class="shadow-desc">
+                                            <div class="blog-meta">
+                                                <span class="bg-orange"><a href="tech-category-01.html" title="">Kategori</a></span>
+                                                <h4><a href="{% url 'newsDetail' newsPosts1.id %}" title="">{{ newsPosts1.title }}</a></h4>
+                                                <small><a href="tech-single.html" title="">{{ newsPosts1.created_date }}</a></small>
+                                                <small><a href="tech-author.html" title="">{{ newsPosts1.author }}</a></small>
+                                                <small><a href="#" title="" ><i class="fas fa-eye"></i>   {{ newsPosts1.post_views }}</a></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>      
+                            </div>  
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            
+
+                <!--
+
+
+                                {% if newsPosts2 %} 
+                                    {% for newsPosts2 in newsPosts2 %}
+
+                                        <div class="second-slot">
+                                            <div class="masonry-box post-media">
+                                                <img src="{{ newsPosts2.news_image.url }}" alt="" class="img-fluid">
+                                                <div class="shadoweffect">
+                                                    <div class="shadow-desc">
+                                                        <div class="blog-meta">
+                                                            <span class="bg-orange"><a href="tech-category-01.html" title="">Gadgets</a></span>
+                                                            <h4><a href="{% url 'newsDetail' newsPosts2.id %}" title="">{{ newsPosts2.title }}</a></h4>
+                                                            <small><a href="tech-single.html" title="">{{ newsPosts2.created_date }}</a></small>
+                                                            <small><a href="tech-author.html" title="">{{ newsPosts2.author }}</a></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+                                {% endif %}
+
+
+                -->
+                        
+                
+
+                {% if newsPosts2 %} 
+                    {% for newsPosts2 in newsPosts2 %}
+                   
+                        <div class="second-slot col-lg-3 col-md-12 col-sm-12  pt-3" style="float: left; padding: 0%;">
+                            <div class="bg-dark text-white" style="width: 100%; height: 449px;">
+                                <div class="masonry-box post-media" style="height: 449px;">
+                                    <img  class="card-img" src="{{ newsPosts2.news_image.url }}" alt="Card image" style="height: 100%; width: 100%;">
+                                    <div class="card-img-overlay"> 
+                                        <div class="shadoweffect">
+                                            <div class="shadow-desc">
+                                                <div class="blog-meta">
+                                                    <span class="bg-orange"><a href="tech-category-01.html" title="">Kategori</a></span>
+                                                    <h4><a href="{% url 'newsDetail' newsPosts2.id %}" title="">{{ newsPosts2.title }}</a></h4>
+                                                    <small><a href="tech-single.html" title="">{{ newsPosts2.created_date }}</a></small>
+                                                    <small><a href="tech-author.html" title="">{{ newsPosts2.author }}</a></small>
+                                                    <small><a href="#" title="" ><i class="fas fa-eye"></i>   {{ newsPosts2.post_views }}</a></small>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div>  
+                                </div>      
+                            </div>  
+                        </div>
+                
+ 
+                    {% endfor %}
+                {% endif %}
+
+
+
+            </div><!-- end masonry -->
+        </div>
+    </section>
+
+
+
+
+    <section class="section">
+        <div class="" style="margin-left: 12%; margin-right: 12%;">
+            <div class="row">
+
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    
+                    <div class="page-wrapper">
+                        
+                        <div class="blog-top clearfix">
+                            <h4 class="pull-left">Son Haberler <a href="#"><i class="fa fa-rss"></i></a></h4>
+                            
+                        </div><!-- end blog-top -->
+                        
+
+
+                        {% if newsPosts3 %} 
+                            {% for newsPosts3 in newsPosts3 %}
+
+                                <div class="blog-list clearfix">
+                                    
+
+                                        <div class="blog-box row">
+                                            <div class="col-md-4">
+                                                <div class="post-media">
+                                                    <a href="tech-single.html" title="">
+                                                        <img src="{{ newsPosts3.news_image.url }}" alt="" class="img-fluid">
+                                                        <div class="hovereffect"></div>
+                                                    </a>
+                                                </div><!-- end media -->
+                                            </div><!-- end col -->
+
+                                            <div class="blog-meta big-meta col-md-8">
+                                                <h4><a href="{% url 'newsDetail' newsPosts3.id %}" title="">{{ newsPosts3.title }}</a></h4>
+                                                <small><a href="tech-single.html" title="">{{ newsPosts3.created_date }}</a></small>
+                                                <small><a href="tech-author.html" title="">{{ newsPosts3.author }}</a></small>
+                                                <small><a href="#" title="" ><i class="fas fa-eye"></i>   {{ newsPosts3.post_views }}</a></small>
+                                                
+                                            </div><!-- end meta -->
+
+                                        
+                                    </div><!-- end blog-box -->
+
+                                    <hr class="invis">
+                                    
+                                </div><!-- end blog-list -->
+
+                            {% endfor %}
+                        {% endif %}
+                   
+
+                    
+                    </div><!-- end page-wrapper -->
+
+                    <hr class="invis">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item"><a class="page-link" href="#">Önceki</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Sonraki</a></li>
+                                </ul>
+                            </nav>
+                        </div><!-- end col -->
+                        
+                    </div><!-- end row -->
+                    
+                </div><!-- end col -->
+        
+
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                
+                    <div class="widget">
+                        <h2 class="widget-title">Popüler Blog Yazıları</h2>
+                        <div class="trend-videos">
+
+
+
+                            {% if blogPostMostViews %}
+                            {% for blogPostMostViews in blogPostMostViews %}
+
+                            <div class="blog-box">
+                                <div class="post-media">
+                                    <a href="{% url 'blogDetail' blogPostMostViews.id %}" title="">
+                                        <img src="{{ blogPostMostViews.news_image.url }}" alt="" class="img-fluid">
+                                        <div class="hovereffect">
+                                            <span class="videohover"></span>
+                                        </div><!-- end hover -->
+                                    </a>
+                                </div><!-- end media -->
+                                <div class="blog-meta">
+                                    <h5><a href="{% url 'blogDetail' blogPostMostViews.id %}" title="">{{ blogPostMostViews.title }}</a></h5>
+                                </div><!-- end meta -->
+                            </div><!-- end blog-box -->
+
+                            <hr class="invis">
+
+                            {% endfor %}
+                            {% endif %}
+                            
+                        </div><!-- end videos -->
+                    </div><!-- end widget -->
+
+                    <hr class="invis">
+
+                    <div class="widget" style="margin-top: 5%;">
+                        <h2 class="widget-title">En Yeni Blog Yazıları</h2>
+                        <div class="blog-list-widget">
+                            <div class="list-group">
+
+                                {% if blogPostNews %}
+                                    {% for blogPostNews in blogPostNews %}
+
+                                <a href="{% url 'blogDetail' blogPostNews.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="w-100 justify-content-between">
+                                        <img src="upload/tech_blog_08.jpg" alt="" class="img-fluid float-left">
+                                        <h5 class="mb-1">{{ blogPostNews.title }}</h5>
+                                        <small>{{ blogPostNews.created_date }}</small>
+                                    </div>
+                                </a>
+                                    {% endfor %}
+                                {% endif %}
+                            
+                            </div>
+                        </div><!-- end blog-list -->
+                    </div><!-- end widget -->
+
+                    
+
+                    <div class="widget mt-4" style="margin-top: 5%;">
+                        <h2 class="widget-title">Bizi Takip Edin!</h2>
+
+                        <div class="row text-center">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <a href="#" class="social-button facebook-button">
+                                    <i class="fa fa-facebook"></i>
+                                    <p>27k</p>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <a href="#" class="social-button twitter-button">
+                                    <i class="fa fa-twitter"></i>
+                                    <p>98k</p>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <a href="#" class="social-button google-button">
+                                    <i class="fa fa-google-plus"></i>
+                                    <p>17k</p>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <a href="#" class="social-button youtube-button">
+                                    <i class="fa fa-youtube"></i>
+                                    <p>22k</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- end widget -->
+
+                    </div><!-- end sidebar -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+        
+        
+        </div><!-- end container -->
+    </section>
+
+
+    <div class="dmtop"><i class="fas fa-chevron-up"></i></div>
+    
+</div><!-- end wrapper -->
+
+<!-- Core JavaScript
+================================================== -->
+
+
+{% endblock %}
